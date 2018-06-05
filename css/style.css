@@ -5,7 +5,9 @@ License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 --*/
 body{
-	margin:0;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    margin:0;
 	font-family: 'Roboto Condensed', sans-serif; 
 	background: #fff;  
 }
@@ -196,7 +198,8 @@ body a:hover,body a:focus{
     text-align: center; 
 }
 .logo h1 {
-    font-size: 4em;
+    font-family: 'Montez', cursive;
+    font-size: 8em;
     color: #fff;
     font-style: italic;
     font-weight: 800;
@@ -315,7 +318,7 @@ p {
 } 
 .welcome-grid-left p{
 	margin:1em 0 1.5em; 
-	width: 70%;
+	width: 100%;
 }
 .more a {
     padding: .7em 2em;
@@ -1556,7 +1559,7 @@ h3.icon-subheading {
 }
 @media(max-width:991px){
 .logo h1 {
-    font-size: 3em; 
+    font-size: 4.5em; 
 }
 .menu .navicon { 
     height: 33px; 
@@ -1579,7 +1582,7 @@ h3.icon-subheading {
     padding: 9em 0 11em;
 }
 .agileits_reservation {
-    margin: 0 0 4em 0; 
+    margin: -3em 0 4em 0; 
 }
 .welcome-grid-left h3 {
     font-size: 1.8em; 
@@ -1844,6 +1847,9 @@ p.b_label {
 }
 }
 @media(max-width:640px){
+    .logo h1 {
+    font-size: 4.2em;
+}
 .banner-text h2 {
     font-size: 3em;
 }
@@ -1871,6 +1877,9 @@ p.b_label {
 }
 }
 @media(max-width:600px){
+    .logo h1 {
+    font-size: 4em;
+}
 .welcome-grid-left p { 
     width: 100%;
 }
@@ -1903,6 +1912,9 @@ p.b_label {
 }
 }
 @media(max-width:480px){
+    .logo h1 {
+    font-size: 3.5em;
+}
 .span1_of_1 {
     width: 31.5%;
 } 
@@ -2001,6 +2013,9 @@ p {
 }
 } 
 @media(max-width:414px){
+    .logo h1 {
+    font-size: 3.1em;
+}
 .span1_of_1 {
     width: 100%;
 }
@@ -2084,6 +2099,9 @@ p.b_label {
 }
 }
 @media(max-width:384px){
+    .logo h1 {
+    font-size: 2.8em;
+}
 .team-row-agileinfo {
     width: 67%;
 }
@@ -2120,6 +2138,9 @@ p.b_label {
 }
 }
 @media(max-width:320px){
+    .logo h1 {
+    font-size: 2.2em;
+}
 .social-w3licon {
     margin-right: 3.5em;
 } 
