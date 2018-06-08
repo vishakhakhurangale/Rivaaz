@@ -1,3 +1,20 @@
+<?php
+	date_default_timezone_set("Asia/Calcutta"); 
+	require 'phpmailer/PHPMailerAutoload.php';
+	require 'configure.php';
+	$OUTPUT = '';
+	if( formSubmission() )
+	{
+		if(sendmail())
+		{
+	    	$OUTPUT = successMessage();
+		}
+	    else
+		{
+	        $OUTPUT = failureMessage();
+	    }
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -24,6 +41,16 @@
 		<link href="https://fonts.googleapis.com/css?family=Montez|Satisfy" rel="stylesheet"> 
 		<link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700" rel="stylesheet">
 		<link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i" rel="stylesheet">
+		<style>
+			.message {
+				background:#cef6ce;
+				color:#088a08;
+			}
+			.message.error {
+				background:#f5a9a9;
+				color:#610b0b;
+			}
+		</style>
 		<!-- //web-fonts -->
 	</head>
 	<body> 
@@ -44,7 +71,7 @@
 								<li><a href="gallery.html"> Gallery</a></li> 
 								<li><a href="codes.html"> Short Codes</a></li>
 								<li><a href="icons.html"> Web Icons</a></li>
-								<li><a href="contact.html" class="active"> Contact Us</a></li>
+								<li><a href="contact.php" class="active"> Contact Us</a></li>
 							</ul>
 						</div> 
 					</div>   
@@ -76,18 +103,53 @@
 				<div class="contact-row agileits-w3layouts new-agileinfo">   
 					<div class="col-md-6 col-sm-6 contact-w3lsleft">
 						<div class="contact-grid agileits">
-							<h4>Drop us a line </h4>
+							<h4>Request a Call Back </h4>
+							<?php print $OUTPUT; ?>
 							<form action="#" method="post"> 
 								<input type="text" name="Name" placeholder="Name" required="">
-								<input type="email" name="Email" placeholder="Email" required=""> 
-								<input type="text" name="Phone Number" placeholder="Phone Number" required="">
+							<div class="phone_email"> 
+								<input type="text" name="Phone" placeholder="Phone" required=""> 
+							</div>
+							<div class="phone_email1"> 
+								<input type="email" name="Email" placeholder="Email" required="">
+							</div>
+							<div class="clearfix"> 
+							</div>
+								<div class="agileits_reservation_grid">
+									<div  class="span1_of_1 book_date"> 
+										<input class="date" id="datepicker" name="Date" placeholder="Date"  type="text" required="">
+									</div>
+									<div class="span1_of_1 section_room">
+										<!-- start_section_room --> 
+										<select id="country1" class="frm-field sect" nama="Occasion" required>
+											<option value="Select Your Occasion">Occasion</option>
+											<option value="Weddings">Weddings</option>
+											<option value="Cocktails">Cocktails</option>
+											<option value="Corporates">Corporates</option>
+											<option value="Theme Party">Theme Party</option>
+											<option value="Private Party">Private Party</option>
+											<option value="Birthday Party">Birthday Party</option>
+										</select> 
+									</div>  
+									<div class="clearfix"></div>
+								</div>
 								<textarea name="Message" placeholder="Message..." required=""></textarea>
-								<input type="submit" value="Submit" >
+								<input type="submit"  name="Send" value="Submit" >
 							</form> 
+							<!-- Calendar -->
+							<link rel="stylesheet" href="css/jquery-ui.css" />
+							<script src="js/jquery-ui.js"></script>
+							  <script>
+									  $(function() {
+										$( "#datepicker" ).datepicker();
+									  });
+							  </script>
+							<!-- //Calendar --> 
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 contact-w3lsright">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24174.906176932098!2d-73.98255489041246!3d40.765031876857535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c258bf12dbe975%3A0xf6bac5dd7bc5f711!2sPookie+and+Sebastian!5e0!3m2!1sen!2sin!4v1482923320436"></iframe> 
+						<iframe width="600" height="450" frameborder="0"src="https://www.google.com/maps/embed/v1/place?q=SS2/491+Sector-F+Jankipuram,+Lucknow&key=AIzaSyANCTnHDLW33WCzrVAWjF0RpA3H7RnmLp8" allowfullscreen>
+						</iframe> 
 					</div>
 					<div class="clearfix"> </div>
 				</div>	
@@ -99,7 +161,7 @@
 			<div class="container">
 				<div class="col-md-5 col-sm-5 agileinfo_footer_grid">
 					<h3 class="agileits-title">About Us</h3>
-					<p>As a full service event company, we provide everything from catering and entertainment to planning and design. <span>Whatever your needs, Dream is committed to making your event memorable and meaningful whether it’s for 2 or 10,000.</span></p>
+					<p>As a full service event company, we provide everything from catering and entertainment to planning and design. <span>Whatever your needs, Rivaaz is committed to making your event memorable and meaningful whether it’s for 2 or 10,000.</span></p>
 				</div>
 				<div class="col-md-3 col-sm-3 agileinfo_footer_grid mid-w3l nav2">
 					<h3 class="agileits-title">Popular</h3>
@@ -201,3 +263,69 @@
 	    <script src="js/bootstrap.js"></script>
 	</body>
 </html>
+<?php 
+function formSubmission()
+{
+	if( isset( $_POST['Send'] ) )
+	{
+		return true;
+    }
+    return false;
+}
+function sendmail()
+{
+	$name=$_POST['Name'];
+	$email=$_POST['Email'];
+	$phone=$_POST['Phone'];
+	$date_occasion=$_POST['Date'];
+	$occasion=$_POST['Occasion'];
+	$mail=create_email($email,$name);
+	$message=$_POST['Message'];
+	$subject=$_POST['Subject'];
+	$mail->Subject = "Request for Call for occasion" ;
+	$t = new DateTime( '@'.time() );
+    $datetime = $t->format( 'r' );
+	$mail->Body    = '<b>'.$name ."</b><<a href=mailto:".$email.">".$email."</a>> sent requested to call back:<br>
+Occasion: ".$occasion."<br>
+Phone No: ".$phone."<br>
+Date of Occasion: ".$date_occasion."<br>
+Message :
+----------------------------------------------------------------------<br>
+".$message
+
+."<br>----------------------------------------------------------------------<br>
+Sent on ".$datetime."";
+	$mail->addAddress('krishnakumar.d16@iiits.in');
+	$final_message = build_email_template($name,$subject);
+	if($mail->send()){
+		$mail=create_email('krishnakumardey.dey@gmai.com','Krishna Kumar Dey');
+		$message=$final_message;
+		$mail->Subject = "Regarding Your query";
+		$mail->Body = $message;
+		$mail->addAddress($email);
+		$mail->send();
+		return true;
+    }
+    else{
+        return false;
+    }
+}
+function build_email_template($name,$subject)
+{
+    // Get email template as string
+    $email_template_string = file_get_contents('email_template.html', true);
+    // Fill email template with message and relevant banner image
+    $email_template = str_replace('%s', $name, $email_template_string);
+    $email_template = str_replace('%e', $subject, $email_template);
+    return $email_template;
+}
+function successMessage(){
+    $message = "Your message was sent successfully - expect a reply soon!  Thank you!";
+    return "<div class='message'>$message</div>";
+}
+
+function failureMessage(){
+    $message = "We're sorry, we were unable to send your message.  Please try again.";
+    return "<div class='message error'>$message</div>";
+}
+?>
