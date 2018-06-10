@@ -70,7 +70,7 @@
 								<li><a href="about.html"> About</a></li> 
 								<li><a href="gallery.html"> Gallery</a></li> 
 								<li><a href="codes.html"> Short Codes</a></li>
-								<li><a href="icons.html"> Web Icons</a></li>
+								<li><a href="menu.html"> MENU</a></li>
 								<li><a href="contact.php" class="active"> Contact Us</a></li>
 							</ul>
 						</div> 

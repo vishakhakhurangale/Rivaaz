@@ -11,6 +11,13 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family:"CAC Champagne";
+  src:url("../fonts/CACCHAMP.eot?") format("eot"),url("../fonts/CACCHAMP.woff") format("woff"),url("../fonts/CACCHAMP.ttf") format("truetype"),url("../fonts/CACCHAMP.svg#CACChampagne") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
+
 .fa {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
