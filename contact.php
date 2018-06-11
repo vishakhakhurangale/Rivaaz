@@ -60,7 +60,7 @@
 			<div class="header">
 				<div class="container">
 					<div class="logo">
-						<h1><a href="index.html">Rivaaz</a></h1>
+						<a href="index.html"><img src="images/catering-icon-rivaaz.png"></a>
 					</div> 
 					<div class="menu">
 						<a href="#" class="navicon"></a> 
@@ -69,8 +69,7 @@
 								<li><a href="index.html"> Home</a></li>
 								<li><a href="about.html"> About</a></li> 
 								<li><a href="gallery.html"> Gallery</a></li> 
-								<li><a href="codes.html"> Short Codes</a></li>
-								<li><a href="menu.html"> MENU</a></li>
+								<li><a href="menu.html"> Menu</a></li>
 								<li><a href="contact.php" class="active"> Contact Us</a></li>
 							</ul>
 						</div> 
