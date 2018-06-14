@@ -35,6 +35,61 @@
 		<link href="css/font-awesome.css" rel="stylesheet"> <!-- font-awesome icons --> 
 		<!-- //Custom Theme files --> 
 		<!-- js -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	    <script type="text/javascript">
+	      google.charts.load('current', {
+	        'packages':['map'],
+	        // Note: you will need to get a mapsApiKey for your project.
+	        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+	        'mapsApiKey': 'AIzaSyANCTnHDLW33WCzrVAWjF0RpA3H7RnmLp8'
+	      });
+	      google.charts.setOnLoadCallback(drawChart);
+	      function drawChart() {
+	        var data = google.visualization.arrayToDataTable([
+	          ['Lat', 'Long', 'Name'],
+	          [26.9194461, 80.9437379, 'Rivaaz Catering Services']
+	        ]);
+
+	        var options = {
+	        	zoomLevel: 18,
+		        showTooltip: true,
+		        showInfoWindow: true,
+		        useMapTypeControl: true,
+				icons: {
+					default: {
+					  normal: 'images/flag.png',
+					  selected: 'images/location.png'
+					}
+				}, 
+				maps: {
+          // Your custom mapTypeId holding custom map styles.
+	          styledMap: {
+	            name: 'Styled Map', // This name will be displayed in the map type control.
+	            styles: [
+	              {featureType: 'poi.attraction',
+	               stylers: [{color: '#fce8b2'}]
+	              },
+	              {featureType: 'road.highway',
+	               stylers: [{hue: '#0277bd'}, {saturation: -50}]
+	              },
+	              {featureType: 'road.highway',
+	               elementType: 'labels.icon',
+	               stylers: [{hue: '#000'}, {saturation: 100}, {lightness: 50}]
+	              },
+	              {featureType: 'landscape',
+	               stylers: [{hue: '#259b24'}, {saturation: 10}, {lightness: -22}]
+	              }
+	        ]}},
+	        mapType: 'styledMap'
+
+	        };
+
+	        var map = new google.visualization.Map(document.getElementById('map_markers_div'));
+	        map.draw(data, options);
+	      }
+
+	    </script>
+
 		<script src="js/jquery-2.2.3.min.js"></script>  
 		<!-- //js -->
 		<!-- web-fonts -->  
@@ -147,8 +202,8 @@
 						</div>
 					</div>
 					<div class="col-md-6 col-sm-6 contact-w3lsright">
-						<iframe width="600" height="450" frameborder="0"src="https://www.google.com/maps/embed/v1/place?q=SS2/491+Sector-F+Jankipuram,+Lucknow&key=AIzaSyANCTnHDLW33WCzrVAWjF0RpA3H7RnmLp8" allowfullscreen>
-						</iframe> 
+						<div id="map_markers_div" style="width: 600px; height: 538px"></div>
+ 
 					</div>
 					<div class="clearfix"> </div>
 				</div>	
@@ -160,7 +215,7 @@
 			<div class="container">
 				<div class="col-md-5 col-sm-5 agileinfo_footer_grid">
 					<h3 class="agileits-title">About Us</h3>
-					<p>As a full service event company, we provide everything from catering and entertainment to planning and design. <span>Whatever your needs, Rivaaz is committed to making your event memorable and meaningful whether it’s for 2 or 10,000.</span></p>
+					<p>Our love for food and celebration inspires us to create splendid food and sensational gatherings. Delivering sensational food to corporate events, weddings and private parties in Lucknow and all over Uttar Pradesh.<span>Rivaaz strive to achieve excellence, aiming to always use seasonal ingredients locally sourced from independent suppliers</span></p>
 				</div>
 				<div class="col-md-3 col-sm-3 agileinfo_footer_grid mid-w3l nav2">
 					<h3 class="agileits-title">Popular</h3>
